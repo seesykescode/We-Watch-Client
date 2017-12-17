@@ -3,12 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import { request } from './helper'
 
+import StreamList from './components/StreamList/StreamList.js'
+
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
-      streams: null
+      streams: null, 
+      selectedStream: null,
     }
   }
 
@@ -42,8 +45,13 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        
-    
+        <a href="https://we-watch-twitch-server.herokuapp.com/auth/login">Login</a>
+        <a href="https://we-watch-twitch-server.herokuapp.com/auth/logOut">logOut</a>
+
+        <StreamList 
+          onStreamSelect={selectedStream => this.setState({selectedStream})} 
+        streams={this.state.streams} 
+        />
       </div>
     );
   }
