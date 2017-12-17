@@ -1,4 +1,7 @@
-
+.App {
+   display: flex;
+   flex-direction: column;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -10,3 +13,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+

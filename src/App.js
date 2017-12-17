@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { request } from './helper'
 
 import StreamList from './components/StreamList/StreamList.js'
+import StreamView from './components/StreamView/StreamView.js'
 
 
 class App extends Component {
@@ -37,13 +37,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
 
         <a href="https://we-watch-twitch-server.herokuapp.com/auth/login">Login</a>
         <a href="https://we-watch-twitch-server.herokuapp.com/auth/logOut">logOut</a>
@@ -52,6 +45,9 @@ class App extends Component {
           onStreamSelect={selectedStream => this.setState({selectedStream})} 
         streams={this.state.streams} 
         />
+
+        <StreamView stream={this.state.selectedStream}/>
+
       </div>
     );
   }

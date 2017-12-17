@@ -1,0 +1,5 @@
+.stream-list-container{
+    height: 100vh;
+    width: 550px;
+    overflow: scroll
+}
