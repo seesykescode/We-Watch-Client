@@ -12,7 +12,6 @@ class StreamView extends Component{
 
        
     componentWillReceiveProps(nextProps, nextState){
-        console.log("I've recieved new props!")
         this.setState({channel: nextProps.stream.channel.display_name})
         
     }
