@@ -8,6 +8,7 @@
    display: flex;
    flex-direction: row-reverse;
    background-color: #f1f1f1;
+   max-width: 3800px;
    
 }
 

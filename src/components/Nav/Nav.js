@@ -20,9 +20,10 @@ class Nav extends Component {
         return(
             <nav className="nav">
                 {!this.props.status ? 
-                    <a href="http://we-watch-twitch-server.herokuapp.com/auth/login"><i className="fa fa-sign-in fa-3x" aria-hidden="true">SignIn</i></a> 
+                    <a href="http://we-watch-twitch-server.herokuapp.com/auth/login"><i className="fa fa-sign-in fa-3x" aria-hidden="true">Log-in</i></a> 
                 : 
-                    <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout"><i className="fa fa-sign-out fa-3x" aria-hidden="true"></i></a> }
+                    <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout"><i className="fa fa-sign-out fa-3x" aria-hidden="true">Logout</i></a> }
+
             </nav>
            
         )
