@@ -27,27 +27,38 @@ class App extends Component {
 
 
   componentDidMount(){
-  
-    request({ url: "/user/validate" })
+    
+    this.state.isLoggedIn ? request({ url: "/user/validate" })
       .then((res) => res.data)
       .then((response) => {
         if (response.token.valid) {
           request({ url: "/user/streams" })
             .then((streams) => {
-               streams = streams.data
+              streams = streams.data
               this.setState({
                 streams,
                 isLoggedIn: true
               })
-              
+
             })
         }
       })
       .catch((err) => {
         console.log(err)
-        this.setState({isLoggedIn: false})
-      })
-  
+        this.setState({ isLoggedIn: false })
+      }) :
+            request({ url: "/user/streams/featured" })
+              .then((streams) => {
+                streams = streams.data
+                this.setState({
+                  streams
+              })
+            })
+        .catch((err) => {
+          console.log(err)
+          this.setState({ isLoggedIn: false })
+        })
+      
   }
 
 
