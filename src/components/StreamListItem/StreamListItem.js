@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const StreamListItem = ({streams, stream, onStreamSelect}) => {
-    console.log(stream)
      if (streams === null){
         return (
             null

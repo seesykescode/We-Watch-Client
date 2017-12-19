@@ -20,15 +20,17 @@ class App extends Component {
     this.state = {
       streams: null, 
       selectedStream: null,
-      isLoggedIn: null,
+      isLoggedIn: false,
       channel: null
     }
   }
 
 
   componentDidMount(){
-    
-    this.state.isLoggedIn ? request({ url: "/user/validate" })
+
+
+       
+  request({ url: "/user/validate" })
       .then((res) => res.data)
       .then((response) => {
         if (response.token.valid) {
@@ -46,18 +48,22 @@ class App extends Component {
       .catch((err) => {
         console.log(err)
         this.setState({ isLoggedIn: false })
-      }) :
-            request({ url: "/user/streams/featured" })
-              .then((streams) => {
-                streams = streams.data
-                this.setState({
-                  streams
-              })
-            })
+      }) 
+
+    if (!this.state.loggedIn) {
+      request({ url: "/user/streams/featured" })
+        .then((streams) => {
+          streams = streams.data
+          this.setState({
+            streams,
+          })
+        })
         .catch((err) => {
           console.log(err)
           this.setState({ isLoggedIn: false })
         })
+    }
+
       
   }
 
@@ -70,7 +76,7 @@ class App extends Component {
         <div className="App">
 
           <div className="stream-view-container">
-            {!this.state.selectedStream ? <h2>Please select a stream</h2> : <StreamView stream = {this.state.selectedStream}/>}
+            {!this.state.selectedStream ? <h1 className="call-header">Please select a stream</h1> : <StreamView stream = {this.state.selectedStream}/>}
           </div>
           <div className="stream-list-container">
           
