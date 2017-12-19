@@ -1,6 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+
 .App {
    display: flex;
-   flex-direction: column;
+   flex-direction: row-reverse;
+   background-color: #f1f1f1;
+   
 }
 
 .App-logo {

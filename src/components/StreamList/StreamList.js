@@ -1,6 +1,6 @@
 import React from 'react'
 import StreamListItem from '../StreamListItem/StreamListItem.js'
-import './StreamList.css'
+
 
 
 function StreamList(props) {
@@ -10,23 +10,25 @@ function StreamList(props) {
         )
     } else {
         return (
-            <div className="stream-list-container">
-            {props.streams.map((stream, index) => {
+          
+            props.streams.map((stream, index) => {
                 return (
                     
+                      
                         <StreamListItem
                             streams={props.streams} onStreamSelect={props.onStreamSelect}
                             stream={stream}
                             key={index}
                         />
+                     
                 
                 )
-            })}
-            </div>
-        )
-    
-    }
 
+    
+            })
+
+        )
+        }
 }
 
 export default StreamList

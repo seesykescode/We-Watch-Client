@@ -1,17 +1,44 @@
- import React from 'react'
- import './StreamView.css'
+import React, { Component } from 'react'
 
 
- const StreamView = (props) => {
-     console.log(props)
-     let view = null
-      props.stream === null ? view = null : view = "stream" 
+class StreamView extends Component{
+    constructor(props){
+        super(props)
 
-       return(
-          <h1>{view}</h1>
+        this.state = {
+            channel: this.props.stream.channel.display_name
+        }
+    }
 
-       )
+       
+    componentWillReceiveProps(nextProps, nextState){
+        console.log("I've recieved new props!")
+        this.setState({channel: nextProps.stream.channel.display_name})
         
- }
+    }
 
- export default StreamView
+  
+   
+    render(){
+        return(
+            <div className='twitchWrapper'>
+                <div className='twitchStream'>
+                    <iframe 
+                    src={`https://player.twitch.tv/?channel=${this.state.channel}`} 
+                    frameborder="0" 
+                    scrolling="no">
+                    </iframe>
+                </div>
+                <div className='twitchChat'>
+                    <iframe 
+                    frameborder="0" 
+                    scrolling="no" 
+                    src={`https://www.twitch.tv/${this.state.channel}/chat`}>
+                    </iframe>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default StreamView

@@ -1,5 +1,20 @@
-.stream-list-item-container{
-    height: 500px;
-    border-bottom: 5px solid dodgerblue;
+.stream-list-item-container {
+    border: 1px solid #6441A4;
     margin: 10px;
+    padding: 10px;
+    cursor: pointer;
 }
+
+img.stream-avatar{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
