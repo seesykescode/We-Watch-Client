@@ -14,9 +14,9 @@ const StreamListItem = ({streams, stream, onStreamSelect}) => {
                     <img src={stream.channel.logo} alt="" className="stream-avatar"/> 
 
                     <div className="stream-description">
-                        <h1>{stream.channel.display_name}</h1>
-                        <h2>{stream.channel.game}</h2>
-                        <h3>{stream.viewers} viewers watching</h3>
+                        <h2>{stream.channel.display_name}</h2>
+                        <h3>{stream.channel.game}</h3>
+                        <h4>{stream.viewers} viewers watching</h4>
                         </div>
                 </div>
   
