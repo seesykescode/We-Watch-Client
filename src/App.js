@@ -46,7 +46,6 @@ class App extends Component {
         }
       })
       .catch((err) => {
-        console.log(err)
         this.setState({ isLoggedIn: false })
       }) 
 
@@ -59,7 +58,6 @@ class App extends Component {
           })
         })
         .catch((err) => {
-          console.log(err)
           this.setState({ isLoggedIn: false })
         })
     }
@@ -81,9 +79,9 @@ class App extends Component {
           <div className="stream-list-container">
           
           <div className="streamer-list">
-              <div className="nav-item-container">
+             
                 <Nav status={this.state.isLoggedIn} />
-              </div>
+            
               
               <StreamList
                 onStreamSelect={selectedStream => this.setState({ selectedStream })}

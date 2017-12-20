@@ -17,14 +17,34 @@ class Nav extends Component {
 
 
     render(){
+        console.log(this.props.status)
         return(
-            <nav className="nav">
+            <div className="nav-container">
                 {!this.props.status ? 
-                    <a href="http://we-watch-twitch-server.herokuapp.com/auth/login"><i className="fa fa-sign-in fa-3x" aria-hidden="true">Log-in</i></a> 
+                    <nav className="nav">
+                        <div className="nav-item-container">
+                            <a href="http://we-watch-twitch-server.herokuapp.com/auth/login"><i className="fa fa-sign-in fa-3x" aria-hidden="true"></i></a>
+                            <p>Log-in</p>
+                        </div> 
+                    </nav>
                 : 
-                    <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout"><i className="fa fa-sign-out fa-3x" aria-hidden="true">Logout</i></a> }
+                  <nav className="nav">
+                        <div className="nav-item-container">
+                            <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout"><i className="fa fa-sign-out fa-3x" aria-hidden="true"></i></a>
+                            <p>Logout</p>
+                        </div>
 
-            </nav>
+                        <div className="nav-item-container">
+                            <a href="http://we-watch-twitch-server.herokuapp.com/user/streams/search"><i className="fa fa-search fa-3x" aria-hidden="true"></i></a>
+                            <p>Search</p>
+                        </div>
+                  </nav>
+
+                }
+
+                
+
+            </div>
            
         )
     }
