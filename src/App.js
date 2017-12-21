@@ -7,7 +7,6 @@ import StreamList from './components/StreamList/StreamList.js'
 import StreamView from './components/StreamView/StreamView.js'
 import Nav from './components/Nav/Nav.js'
 import Loading from './components/Loading/Loading.js'
-import SearchResult from './components/SearchResult/SearchResult.js'
 
 
 
