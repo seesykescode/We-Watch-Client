@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import 'font-awesome/css/font-awesome.min.css';
+import Search from '../Search/Search.js'
 
 class Nav extends Component {
 
@@ -17,7 +18,6 @@ class Nav extends Component {
 
 
     render(){
-        console.log(this.props.status)
         return(
             <div className="nav-container">
                 {!this.props.status ? 
@@ -26,6 +26,10 @@ class Nav extends Component {
                             <a href="http://we-watch-twitch-server.herokuapp.com/auth/login"><i className="fa fa-sign-in fa-3x" aria-hidden="true"></i></a>
                             <p>Log-in</p>
                         </div> 
+
+                        <div className="nav-item-container">
+                            <Search/>
+                        </div>
                     </nav>
                 : 
                   <nav className="nav">
@@ -37,6 +41,10 @@ class Nav extends Component {
                         <div className="nav-item-container">
                             <a href="http://we-watch-twitch-server.herokuapp.com/user/streams/search"><i className="fa fa-search fa-3x" aria-hidden="true"></i></a>
                             <p>Search</p>
+                        </div>
+
+                        <div className="nav-item-container">
+                            <Search />
                         </div>
                   </nav>
 
