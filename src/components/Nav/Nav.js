@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import 'font-awesome/css/font-awesome.min.css';
-import Search from '../Search/Search.js'
+
 
 class Nav extends Component {
 
