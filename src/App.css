@@ -4,11 +4,14 @@
   box-sizing: border-box
 }
 
+body{
+  background-color: #f1f1f1; 
+}
 .App {
    display: flex;
    flex-direction: row-reverse;
-   background-color: #f1f1f1;
    max-width: 3800px;
+   margin: auto 15px;
    
 }
 
@@ -19,7 +22,12 @@
   transform: translate(-50%, -50%)
 }
 
-
+@media  (max-width: 1220px){
+  .App{
+    display: flex;
+    flex-direction: column;
+  }
+}
 
  
 

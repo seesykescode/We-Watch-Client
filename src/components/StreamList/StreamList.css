@@ -3,3 +3,19 @@
     width:25%;
     overflow: scroll;
 }
+
+@media (max-width: 1220px) {
+   .stream-list-container{
+       width: 100%;
+       overflow: initial;
+   }
+
+   .streamer-list{
+         display: flex;
+         flex-flow: row wrap;
+         justify-content: center;
+         align-content:center;
+   }
+
+
+}

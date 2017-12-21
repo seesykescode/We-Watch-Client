@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import { request } from './helper'
 
+//import components
 import StreamList from './components/StreamList/StreamList.js'
 import StreamView from './components/StreamView/StreamView.js'
 import Nav from './components/Nav/Nav.js'
 import Loading from './components/Loading/Loading.js'
+import Search from './components/Search/Search.js'
+import SearchResult from './components/SearchResult/SearchResult.js'
 
 
 
@@ -23,9 +26,10 @@ class App extends Component {
     this.state = {
       streams: null,
       selectedStream: null,
-      isLoggedIn: null,
+      isLoggedIn: false,
       isLoading: true,
-      channel: null
+      isSearching: true,
+      isSearchCompleted: false
     }
   }
 
@@ -41,7 +45,8 @@ class App extends Component {
               this.setState({
                 streams,
                 isLoggedIn: true, 
-                isLoading: false
+                isLoading: false,
+                
               })
 
             })
@@ -57,6 +62,7 @@ class App extends Component {
           streams = streams.data
           this.setState({
             streams,
+            isLoggedIn:false,
             isLoading: false
           })
         })
@@ -67,36 +73,39 @@ class App extends Component {
   }
   
 
+  handleSearchLink(){
+    this.setState({isSearching: true})
+  }
+
 
   
 
 
   render() {
+    console.log(this.state.isloggedIn)
     return (
-      <div className="">
-        {this.state.isLoading ? <Loading /> : <div className="App">
+      <Router>
 
-          <div className="stream-view-container">
-            {!this.state.selectedStream ? <h1 className="utl-abso-center">Please select a stream </h1> : <StreamView stream={this.state.selectedStream} />}
-          </div>
-          <div className="stream-list-container">
-
-            <div className="streamer-list">
-              <div className="nav-container">
-                <Nav status={this.state.isLoggedIn} />
-              </div>
-              <StreamList
-                onStreamSelect={selectedStream => this.setState({ selectedStream })}
-                streams={this.state.streams}
-              />
+        <div className="">
+          {this.state.isLoading ? <Loading /> : <div className="App">
+            <div className="stream-view-container">
+              {!this.state.selectedStream ? <h1 className="utl-abso-center">Please select a stream </h1> : <StreamView stream={this.state.selectedStream} />}
             </div>
 
-
-
+            <div className="stream-list-container">
+              
+                <Nav status={this.state.isLoggedIn}/>
+              <div className="streamer-list">       
+                  <StreamList
+                  onStreamSelect={selectedStream => this.setState({ selectedStream })}
+                streams={this.state.streams}
+                />
+              </div>
+            </div>
           </div>
-
-        </div>}
-      </div>
+        }
+        </div>
+      </Router>
     );
   }
 }

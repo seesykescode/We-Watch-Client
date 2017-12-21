@@ -39,7 +39,7 @@
     opacity: 1;
 }
 
-@media screen and (max-width: 1700px) {
+@media (max-width: 1700px) {
     
     img.stream-avatar{
         max-width: 100%;
@@ -52,5 +52,19 @@
 }
 
 
+@media (max-width: 1220px) {
+    .stream-description{
+        display: none;
+}
 
 
+
+.stream-list-item-container:hover img {
+    opacity: 1;
+}
+
+.stream-list-item-container:hover .stream-description {
+    opacity:0;
+}
+
+}

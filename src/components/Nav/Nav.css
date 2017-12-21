@@ -11,3 +11,9 @@
 .nav-item-container{
     margin: 10px;
 }
+
+@media (max-width: 1220px){
+ .nav-container{
+     display: block;
+ }
+}
