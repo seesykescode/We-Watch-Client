@@ -1,19 +1,42 @@
 .nav{
     display: flex;
     flex-direction: row;
+    
 }
 
 .nav-container{
     display: flex;
     flex-direction: row;
+    background-color: #6441A4;
+    color: white;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+    padding: 20px;
 }
 
 .nav-item-container{
-    margin: 10px;
+    margin: auto 20px;
+    height: 80px;
+    width: 60px;
 }
 
-@media (max-width: 1220px){
+
+.nav-item-container img {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+}
+
+.nav-item-container a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+
+/* @media (max-width: 1220px){
  .nav-container{
      display: block;
  }
-}
+} */

@@ -1,51 +1,71 @@
-import React, {Component} from 'react'
-import 'font-awesome/css/font-awesome.min.css';
-
+import React, { Component } from "react";
+import { request } from "../../helper";
+import "font-awesome/css/font-awesome.min.css";
 
 class Nav extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props){
-        super(props)
+    this.state = {
+      isloggedIn: this.props.status,
+      user: null
+    };
+  }
 
-        this.state = {
-            isloggedIn: this.props.status
+  componentDidMount() {
+    request({ url: "/user/validate" })
+      .then(res => res.data)
+      .then(response => {
+        if (response.token.valid) {
+          request({ url: "/user/" }).then(user => {
+            user = user.data._json;
+            console.log(user);
+            let userObj = {
+              userName: user.display_name,
+              avatar: user.logo
+            };
+            console.log(userObj);
+            this.setState({
+              user: userObj
+            });
+          });
         }
-    }
+      })
+      .catch(err => {
+        this.setState({ user: null });
+      });
+  }
 
-    componentDidMount(){
-        
-    }
-
-
-    render(){
-        return(
-            <div className="nav-container">
-                {!this.props.status ? 
-                    <nav className="nav">
-                        <div className="nav-item-container">
-                            <a href="http://we-watch-twitch-server.herokuapp.com/auth/login"><i className="fa fa-sign-in fa-3x" aria-hidden="true"></i></a>
-                            <p>Log-in</p>
-                        </div> 
-                    </nav>
-                : 
-                  <nav className="nav">
-                        <div className="nav-item-container">
-                            <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout"><i className="fa fa-sign-out fa-3x" aria-hidden="true"></i></a>
-                            <p>Logout</p>
-                        </div>
-
-
-                       
-                  </nav>
-
-                }
-
-                
-
+  render() {
+    return (
+      <div className="nav-container">
+        {!this.props.status ? (
+          <nav className="nav">
+            <div className="nav-item-container">
+              <a href="http://we-watch-twitch-server.herokuapp.com/auth/login">
+                <i className="fa fa-sign-in fa-4x" aria-hidden="true" />
+                Login
+              </a>
+              
             </div>
-           
-        )
-    }
+          </nav>
+        ) : (
+          <nav className="nav">
+            <div className="nav-item-container">
+                <img src={this.state.user.avatar} alt="" className="avatar"/>
+                <p>{this.state.user.userName}</p>            
+            </div>
+            <div className="nav-item-container">
+              <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout">
+                <i className="fa fa-sign-out fa-4x" aria-hidden="true" />
+                Logout
+              </a>
+            </div>
+          </nav>
+        )}
+      </div>
+    );
+  }
 }
 
-export default Nav
+export default Nav;

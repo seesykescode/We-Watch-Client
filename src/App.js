@@ -81,30 +81,30 @@ class App extends Component {
 
   render() {
     console.log(this.state.isloggedIn)
-    return (
-      <Router>
-
+    return <Router>
         <div className="">
+          <Nav status={this.state.isLoggedIn} />
           {this.state.isLoading ? <Loading /> : <div className="App">
-            <div className="stream-view-container">
-              {!this.state.selectedStream ? <h1 className="utl-abso-center">Please select a stream </h1> : <StreamView stream={this.state.selectedStream} />}
-            </div>
-
-            <div className="stream-list-container">
-              
-                <Nav status={this.state.isLoggedIn}/>
-              <div className="streamer-list">       
-                  <StreamList
-                  onStreamSelect={selectedStream => this.setState({ selectedStream })}
-                streams={this.state.streams}
-                />
+              <div className="stream-view-container">
+                {!this.state.selectedStream ? (
+                  <h1 className="utl-abso-center">
+                    Please select a stream{" "}
+                  </h1>
+                ) : (
+                  <StreamView stream={this.state.selectedStream} />
+                )}
               </div>
-            </div>
-          </div>
-        }
+
+              <div className="stream-list-container">
+                <div className="streamer-list">
+                  <StreamList onStreamSelect={selectedStream => this.setState(
+                        { selectedStream }
+                      )} streams={this.state.streams} />
+                </div>
+              </div>
+            </div>}
         </div>
-      </Router>
-    );
+      </Router>;
   }
 }
 
