@@ -44,9 +44,8 @@ class Nav extends Component {
             <div className="nav-item-container">
               <a href="http://we-watch-twitch-server.herokuapp.com/auth/login">
                 <i className="fa fa-sign-in fa-4x" aria-hidden="true" />
-                Login
               </a>
-              
+              <p>Login</p>
             </div>
           </nav>
         ) : (
@@ -57,9 +56,9 @@ class Nav extends Component {
             </div>
             <div className="nav-item-container">
               <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout">
-                <i className="fa fa-sign-out fa-4x" aria-hidden="true" />
-                Logout
+                <i className="fa fa-sign-out fa-5x" aria-hidden="true" />
               </a>
+                <p>Logout</p>
             </div>
           </nav>
         )}

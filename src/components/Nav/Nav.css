@@ -11,20 +11,24 @@
     color: white;
     justify-content: flex-end;
     margin-bottom: 50px;
-    padding: 20px;
+    padding: 5px;
 }
 
 .nav-item-container{
-    margin: auto 20px;
-    height: 80px;
-    width: 60px;
+    margin: auto 10px;
+    height: 100%;
+    width: 90px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
 }
 
 
-.nav-item-container img {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto;
+ img, i {
+    max-width: 80px;
+    max-height: 80px;
 }
 
 .nav-item-container a {
