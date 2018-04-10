@@ -41,37 +41,37 @@ class App extends Component {
           this.setState({
             isLoggedIn: true
           })
-    }
-          }) 
-      .catch((err) => {
-        this.setState({ isLoggedIn: false })
+    } else {
+      this.setState({
+        isLoggedIn: false
       })
+    } 
+       if (this.state.isLoggedIn) {
+         request({ url: "/user/streams/" })
+           .then(streams => {
+             streams = streams.data;
+             this.setState({ streams, isLoading: false });
+           })
+           .catch(err => {
+             this.setState({ isLoggedIn: false });
+           });
+       } else if (!this.state.isLoggedIn) {
+         request({ url: "/user/streams/featured" })
+           .then(streams => {
+             streams = streams.data;
+             this.setState({ streams, isLoading: false });
+           })
+           .catch(err => {
+             this.setState({ isLoggedIn: false });
+           });
+       }
+          }) 
+
+          
+
       
 
- if (this.state.loggedIn){
-  request({ url: "/user/streams/" })
-    .then(streams => {
-      streams = streams.data;
-      this.setState({ streams, isLoading: false });
-    })
-    .catch(err => {
-      this.setState({ isLoggedIn: false });
-    });
- }  else if (!this.state.loggedIn) {
-      request({ url: "/user/streams/featured" })
-        .then((streams) => {
-          streams = streams.data
-          this.setState({
-            streams,
-            isLoading: false
-          })
-        })
-        .catch((err) => {
-          this.setState({ isLoggedIn: false })
-        })
-    }
-
-
+ 
     
   }
   
