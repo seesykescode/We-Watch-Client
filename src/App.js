@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import { BrowserRouter as Router} from 'react-router-dom'
 import { request } from './helper'
 
 //import components
@@ -27,7 +27,8 @@ class App extends Component {
       isLoggedIn: false,
       isLoading: true,
       isSearching: true,
-      isSearchCompleted: false
+      isSearchCompleted: false,
+      user: null
     }
   }
 
@@ -38,22 +39,19 @@ class App extends Component {
       .then((res) => res.data)
       .then((response) => {
         if (response.token.valid) {
-          this.setState({
-            isLoggedIn: true
-          })
-    } else {
-      this.setState({
-        isLoggedIn: false
-      })
-    } 
-       if (this.state.isLoggedIn) {
+           request({ url: "/user/" }).then(user => {
+             user = user.data._json;
+             let userObj = { userName: user.display_name, avatar: user.logo };
+             this.setState({ user: userObj, isLoggedIn: true });
+
+             if (this.state.isLoggedIn) {
          request({ url: "/user/streams/" })
            .then(streams => {
              streams = streams.data;
-             this.setState({ streams, isLoading: false });
+            this.setState({ streams, isLoading: false });
            })
            .catch(err => {
-             this.setState({ isLoggedIn: false });
+             this.setState({ streams: null });
            });
        } else if (!this.state.isLoggedIn) {
          request({ url: "/user/streams/featured" })
@@ -64,17 +62,22 @@ class App extends Component {
            .catch(err => {
              this.setState({ isLoggedIn: false });
            });
-       }
+    } else {
+      this.setState({
+        isLoggedIn: false
+      })
+    } 
           }) 
 
-          
+        }
 
       
 
  
     
-  }
-  
+  })
+}
+
 
   handleSearchLink(){
     this.setState({isSearching: true})
@@ -87,7 +90,7 @@ class App extends Component {
   render() {
     return <Router>
         <div className="">
-          <Nav status={this.state.isLoggedIn} />
+          <Nav status={this.state.isLoggedIn} user={this.state.user} />
           {this.state.isLoading ? <Loading /> : <div className="App">
               <div className="stream-view-container">
                 {!this.state.selectedStream ? (
