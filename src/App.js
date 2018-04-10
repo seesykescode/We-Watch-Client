@@ -36,47 +36,66 @@ class App extends Component {
   componentDidMount() {
     //Am I logged in? or what?
     request({ url: "/user/validate" })
-      .then((res) => res.data)
+      .then((res) => {
+        console.log(res)
+        return res.data
+      })
       .then((response) => {
         if (response.token.valid) {
-           request({ url: "/user/" }).then(user => {
-             user = user.data._json;
-             let userObj = { userName: user.display_name, avatar: user.logo };
-             this.setState({ user: userObj, isLoggedIn: true });
-
-             if (this.state.isLoggedIn) {
-         request({ url: "/user/streams/" })
-           .then(streams => {
-             streams = streams.data;
-            this.setState({ streams, isLoading: false });
-           })
-           .catch(err => {
-             this.setState({ streams: null });
-           });
-       } else if (!this.state.isLoggedIn) {
-         request({ url: "/user/streams/featured" })
-           .then(streams => {
-             streams = streams.data;
-             this.setState({ streams, isLoading: false });
-           })
-           .catch(err => {
-             this.setState({ isLoggedIn: false });
-           });
-    } else {
-      this.setState({
-        isLoggedIn: false
-      })
-    } 
-          }) 
-
-        }
-
+          request({ url: "/user/" }).then(user => {
+            user = user.data._json;
+            let userObj = { userName: user.display_name, avatar: user.logo };
+            this.setState({ user: userObj });
+          });
+          request({ url: "/user/streams/" }).then(streams => {
+            streams = streams.data;
+            this.setState({
+              streams,
+              isLoggedIn: true,
+              isLoading: false
+            });
+          });
+        }})
+        .catch((err) => {
+          request({ url: "/user/streams/featured" })
+                     .then(streams => {
+                       streams = streams.data;
+                       this.setState({ 
+                        streams,
+                        isLoggedIn: false, 
+                        isLoading: false });
+                     })
+        })
       
+      }
+//              if (this.state.isLoggedIn) {
+//          request({ url: "/user/streams/" })
+//            .then(streams => {
+//              streams = streams.data;
+//             this.setState({ streams, isLoading: false });
+//            })
+//            .catch(err => {
+//              this.setState({ streams: null });
+//            });
+//        } else if (!this.state.isLoggedIn) {
+//          request({ url: "/user/streams/featured" })
+//            .then(streams => {
+//              streams = streams.data;
+//              this.setState({ streams, isLoading: false });
+//            })
+//            .catch(err => {
+//              this.setState({ isLoggedIn: false });
+//            });
+//     } else {
+//       this.setState({
+//         isLoggedIn: false
+//       })
+//     } 
+//           }) 
 
- 
-    
-  })
-}
+//         }   
+//   })
+// }
 
 
   handleSearchLink(){
@@ -90,7 +109,7 @@ class App extends Component {
   render() {
     return <Router>
         <div className="">
-          <Nav status={this.state.isLoggedIn} user={this.state.user} />
+          <Nav status={this.state.isLoggedIn} isLoaded={this.state.isLoading} user={this.state.user} />
           {this.state.isLoading ? <Loading /> : <div className="App">
               <div className="stream-view-container">
                 {!this.state.selectedStream ? (
