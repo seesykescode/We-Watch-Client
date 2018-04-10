@@ -58,7 +58,6 @@ class App extends Component {
       this.setState({ isLoggedIn: false });
     });
  }  else if (!this.state.loggedIn) {
-   console.log("I'm not logged in...")
       request({ url: "/user/streams/featured" })
         .then((streams) => {
           streams = streams.data

@@ -19,12 +19,10 @@ class Nav extends Component {
         if (response.token.valid) {
           request({ url: "/user/" }).then(user => {
             user = user.data._json;
-            console.log(user);
             let userObj = {
               userName: user.display_name,
               avatar: user.logo
             };
-            console.log(userObj);
             this.setState({
               user: userObj
             });
