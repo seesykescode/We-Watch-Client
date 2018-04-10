@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import Loading from '../Loading/Loading'
 
 
 class StreamView extends Component{
     constructor(props){
         super(props)
-
         this.state = {
             channel: this.props.stream.channel.display_name
         }
@@ -12,16 +12,14 @@ class StreamView extends Component{
 
        
     componentWillReceiveProps(nextProps, nextState){
-        this.setState({channel: nextProps.stream.channel.display_name})
-        
+        this.setState({channel: nextProps.stream.channel.display_name}) 
     }
 
-  
    
     render(){
         return(
             <div className='twitchWrapper'>
-                <div className='twitchStream'>
+                     <div className='twitchStream'>
                     <iframe 
                     src={`https://player.twitch.tv/?channel=${this.state.channel}`} 
                     frameborder="0" 
@@ -34,7 +32,7 @@ class StreamView extends Component{
                     scrolling="no" 
                     src={`https://www.twitch.tv/${this.state.channel}/chat`}>
                     </iframe>
-                </div>
+                </div> 
             </div>
         )
     }

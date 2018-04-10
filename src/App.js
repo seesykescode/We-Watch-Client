@@ -33,34 +33,37 @@ class App extends Component {
 
 
   componentDidMount() {
+    //Am I logged in? or what?
     request({ url: "/user/validate" })
       .then((res) => res.data)
       .then((response) => {
         if (response.token.valid) {
-          request({ url: "/user/streams" })
-            .then((streams) => {
-              streams = streams.data
-              this.setState({
-                streams,
-                isLoggedIn: true, 
-                isLoading: false,
-                
-              })
-
-            })
-        }
-      })
+          this.setState({
+            isLoggedIn: true
+          })
+    }
+          }) 
       .catch((err) => {
         this.setState({ isLoggedIn: false })
       })
+      
 
-    if (!this.state.loggedIn) {
+ if (this.state.loggedIn){
+  request({ url: "/user/streams/" })
+    .then(streams => {
+      streams = streams.data;
+      this.setState({ streams, isLoading: false });
+    })
+    .catch(err => {
+      this.setState({ isLoggedIn: false });
+    });
+ }  else if (!this.state.loggedIn) {
+   console.log("I'm not logged in...")
       request({ url: "/user/streams/featured" })
         .then((streams) => {
           streams = streams.data
           this.setState({
             streams,
-            isLoggedIn:false,
             isLoading: false
           })
         })
@@ -68,6 +71,9 @@ class App extends Component {
           this.setState({ isLoggedIn: false })
         })
     }
+
+
+    
   }
   
 
@@ -80,7 +86,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.isloggedIn)
     return <Router>
         <div className="">
           <Nav status={this.state.isLoggedIn} />

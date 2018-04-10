@@ -27,6 +27,10 @@ body{
     display: flex;
     flex-direction: column;
   }
+
+    .stream-view-container {
+      padding: 25px;
+    }
 }
 
  
