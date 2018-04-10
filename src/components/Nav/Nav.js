@@ -37,7 +37,7 @@ class Nav extends Component {
   render() {
     return (
       <div className="nav-container">
-        {!this.props.status && this.state.user.avatar ? (
+        {!this.props.status && this.state.user ? (
           <nav className="nav">
             <div className="nav-item-container">
               <a href="http://we-watch-twitch-server.herokuapp.com/auth/login">
