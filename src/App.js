@@ -37,7 +37,6 @@ class App extends Component {
     //Am I logged in? or what?
     request({ url: "/user/validate" })
       .then((res) => {
-        console.log(res)
         return res.data
       })
       .then((response) => {
