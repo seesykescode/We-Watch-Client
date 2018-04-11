@@ -9,8 +9,12 @@
   background-color: #6441a4;
   color: white;
   justify-content: flex-end;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   padding: 5px;
+}
+
+i {
+  padding: 2px;
 }
 
 .nav-item-container {
