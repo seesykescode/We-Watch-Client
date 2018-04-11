@@ -20,7 +20,7 @@ class Nav extends Component {
                 <img src={this.props.user.avatar} alt="" className="avatar" />
                 <p>{this.props.user.displayName}</p>
               </div>
-              
+               
               <div className="nav-item-container">
                 <a href="http://we-watch-twitch-server.herokuapp.com/auth/logout">
                   <i className="fa fa-sign-out fa-5x" aria-hidden="true" />
